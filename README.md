@@ -15,7 +15,7 @@ Features include:
 
 ## Screenshot
 
-![](https://github.com/zocusapp/zocus-ios/blob/master/Screenshot.png?raw=true)
+![](https://github.com/zocusapp/zocus-ios/blob/master/screenshot.png?raw=true)
 
 ## License
 
