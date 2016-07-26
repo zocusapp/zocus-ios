@@ -67,6 +67,7 @@ class MainViewController: UIViewController
     
     @IBOutlet weak var controlLabel: UILabel! {
         didSet {
+            self.controlLabel.hidden = true
             self.controlLabel.text = "Control".localized
             self.controlLabel.textColor = .appGray()
             self.controlLabel.font = .boldSystemFontOfSize(16.0)
