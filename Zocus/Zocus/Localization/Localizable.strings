@@ -1,0 +1,60 @@
+/* 
+  Localizable.strings
+  Zocus
+
+  Created by Akram Hussein on 25/07/2016.
+  Copyright © 2016 Akram Hussein. All rights reserved.
+*/
+
+"Zoom" = "Zoom";
+"Focus" = "Focus";
+"MyLenses" = "My Lenses ▾";
+
+"AddLens.Button" = "+ Add Lens";
+"AddLens.Save" = "Save";
+"AddLens.Cancel" = "Cancel";
+"AddLens.Message" = "Please enter a name for your lens";
+"AddLens.SaveError" = "There was an issue saving your lens, please try again";
+"AddLens.NewLensNamePlaceholder" = "New lens name";
+
+"DeleteLens.Message" = "Are you sure you want to delete this lens?";
+"DeleteLens.Cancel" = "Cancel";
+"DeleteLens.Delete" = "Delete";
+
+"EditLens.Message" = "Please enter a name for your lens";
+"AddLens.EditRowButton" = "Edit";
+"AddLens.DeleteRowButton" = "Delete";
+
+"Calibration.Calibrate" = "Calibrate";
+"Calibration.Exit" = "Exit Calibration";
+
+"Calibration.SaveZoom.Min" = "Save Min Zoom";
+"Calibration.SaveFocus.Min" = "Save Min Focus";
+"Calibration.SaveZoom.Max" = "Save Max Zoom";
+"Calibration.SaveFocus.Max" = "Save Max Focus";
+
+"Calibration.ResetZoom.Min" = "Reset Min Zoom";
+"Calibration.ResetFocus.Min" = "Reset Min Focus";
+"Calibration.ResetZoom.Max" = "Reset Max Zoom";
+"Calibration.ResetFocus.Max" = "Reset Max Focus";
+
+"Alert.OK" = "OK";
+
+"Min" = "Min";
+"Max" = "Max";
+
+"Calibration.Explanation" = "You are about to Calibrate the Zoom and Focus of a new lens.
+
+Please Follow These Steps:
+
+1. Dismount your lens before starting this App. If you have not done this, dismount and re-start the App.
+
+2. Position the Zoom and Focus rings roughly in the middle of their operational range, e.g. if you have a 28mm-300mm, set the Zoom to ~130mm.
+Do similarly for the Focus also.
+
+3. Now mount the Lens.
+
+In the next screen you will define the Min and Max ranges for both the Zoom and the Focus.
+The Default is the largest possible Min-Max range that the servos can handle. Save alternatives under My Lenses.
+
+For help, go to www.zocus.co.uk/setup";

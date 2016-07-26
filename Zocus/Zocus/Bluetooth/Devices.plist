@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>713D0000-503E-4C75-BA94-3148F18D941E</key>
+	<dict>
+		<key>Manufacturer</key>
+		<string>RedBear</string>
+		<key>ReadCharacteristic</key>
+		<string>713D0002-503E-4C75-BA94-3148F18D941E</string>
+		<key>WriteCharacteristic</key>
+		<string>713D0003-503E-4C75-BA94-3148F18D941E</string>
+		<key>Commands</key>
+		<dict>
+			<key>OnOff</key>
+			<string>110</string>
+			<key>Stop</key>
+			<string>102</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
