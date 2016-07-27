@@ -132,6 +132,7 @@ class MainViewController: UIViewController
             self.zoomCalibrationRangeSlider.hidden = true
             self.zoomCalibrationRangeSlider.trackTintColor = .appRed()
             self.zoomCalibrationRangeSlider.thumbTintColor = .appGray()
+            self.zoomCalibrationRangeSlider.trackHighlightTintColor = .appGray()
             
             self.zoomCalibrationRangeSlider.lowerThumbLayer.enabled = true            
             self.zoomCalibrationRangeSlider.upperThumbLayer.enabled = false
@@ -149,6 +150,7 @@ class MainViewController: UIViewController
             self.focusCalibrationRangeSlider.hidden = true
             self.focusCalibrationRangeSlider.trackTintColor = .appRed()
             self.focusCalibrationRangeSlider.thumbTintColor = .appGray()
+            self.focusCalibrationRangeSlider.trackHighlightTintColor = .appGray()
             
             self.focusCalibrationRangeSlider.lowerThumbLayer.enabled = true
             self.focusCalibrationRangeSlider.upperThumbLayer.enabled = false
