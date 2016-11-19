@@ -17,6 +17,31 @@ Features include:
 
 ![](https://github.com/zocusapp/zocus-ios/blob/master/screenshot.png?raw=true)
 
+## Requirements
+
+* [Xcode](https://developer.apple.com/xcode/download/)
+* [Cocoapods](https://cocoapods.org/)
+
+## Installation Instructions
+
+1. Download the [source code](https://github.com/zocusapp/zocus-ios)
+
+  `$ git clone git@github.com:zocusapp/zocus-ios.git`
+
+2. Install [cocoapods](https://cocoapods.org/)
+	
+  `$ cd ./Zocus/zocus-ios && pod install`
+
+3. Open "Zocus.xcworkspace" in Xcode
+
+4. Open Xcode's Preferences > Accounts and add your Apple ID
+
+5. In Xcode's sidebar select "Zocus" and go to Targets > Zocus > General > Identity and add a word to the end of the Bundle Identifier to make it unique. Also select your Apple ID in Signing > Team
+
+6. Connect your iPad or iPhone and select it in Xcode's Product menu > Destination
+
+7. Press CMD+R or Product > Run to install Zocus
+
 ## License
 
 zocus-ios is available under the GPLv3 License
