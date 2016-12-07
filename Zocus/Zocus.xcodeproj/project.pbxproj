@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5ABCD7A5DFAFF9BD71FC160D /* Pods_Zocus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B01104D90036A191509B33 /* Pods_Zocus.framework */; };
 		6A1D796C1CBA3DB300A1D3FF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A1D796B1CBA3DB300A1D3FF /* Launch Screen.storyboard */; };
 		6A1D797C1CBA474F00A1D3FF /* ActivePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1D79761CBA474F00A1D3FF /* ActivePeripheral.swift */; };
 		6A1D797D1CBA474F00A1D3FF /* ActivePeripheralsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1D79771CBA474F00A1D3FF /* ActivePeripheralsManager.swift */; };
@@ -33,14 +32,12 @@
 		6AF339FD1CB8FB70009D6B88 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AF339FC1CB8FB70009D6B88 /* Assets.xcassets */; };
 		6AF33A0C1CB8FD5B009D6B88 /* UIBarButtonItem+AppButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF33A0B1CB8FD5B009D6B88 /* UIBarButtonItem+AppButtons.swift */; };
 		6AF33A0E1CB8FE42009D6B88 /* UINavigationController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF33A0D1CB8FE42009D6B88 /* UINavigationController+UI.swift */; };
-		8B031C36603649425AEB98C3 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91266EA4A61F17BCB4B49524 /* Pods.framework */; };
 		FA0612ED1DF82FE60080B021 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0612EC1DF82FE60080B021 /* Logging.swift */; };
 		FA0612EF1DF835E70080B021 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0612EE1DF835E70080B021 /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		14CC469F1D51E646C2FC684A /* Pods-Zocus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zocus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Zocus/Pods-Zocus.debug.xcconfig"; sourceTree = "<group>"; };
-		33A5FE80D20CA4ADD8FE9302 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6A1D796B1CBA3DB300A1D3FF /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		6A1D79761CBA474F00A1D3FF /* ActivePeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivePeripheral.swift; sourceTree = "<group>"; };
 		6A1D79771CBA474F00A1D3FF /* ActivePeripheralsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivePeripheralsManager.swift; sourceTree = "<group>"; };
@@ -68,9 +65,6 @@
 		6AF33A011CB8FB70009D6B88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6AF33A0B1CB8FD5B009D6B88 /* UIBarButtonItem+AppButtons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+AppButtons.swift"; sourceTree = "<group>"; };
 		6AF33A0D1CB8FE42009D6B88 /* UINavigationController+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+UI.swift"; sourceTree = "<group>"; };
-		91266EA4A61F17BCB4B49524 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF2B9E0749303609CBC2A1D8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
-		C7B01104D90036A191509B33 /* Pods_Zocus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zocus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F486B77A424951C9B1DDCAF2 /* Pods-Zocus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zocus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Zocus/Pods-Zocus.release.xcconfig"; sourceTree = "<group>"; };
 		FA0612EC1DF82FE60080B021 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
 		FA0612EE1DF835E70080B021 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
@@ -81,8 +75,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B031C36603649425AEB98C3 /* Pods.framework in Frameworks */,
-				5ABCD7A5DFAFF9BD71FC160D /* Pods_Zocus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -92,8 +84,6 @@
 		277CA735F18039806E8FEFDB /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BF2B9E0749303609CBC2A1D8 /* Pods.debug.xcconfig */,
-				33A5FE80D20CA4ADD8FE9302 /* Pods.release.xcconfig */,
 				14CC469F1D51E646C2FC684A /* Pods-Zocus.debug.xcconfig */,
 				F486B77A424951C9B1DDCAF2 /* Pods-Zocus.release.xcconfig */,
 			);
@@ -244,8 +234,6 @@
 		DE78FB3F219E64BE84570897 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				91266EA4A61F17BCB4B49524 /* Pods.framework */,
-				C7B01104D90036A191509B33 /* Pods_Zocus.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -513,7 +501,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = "Zocus/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Zocus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -529,7 +517,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = "Zocus/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Zocus;
 				PRODUCT_NAME = "$(TARGET_NAME)";

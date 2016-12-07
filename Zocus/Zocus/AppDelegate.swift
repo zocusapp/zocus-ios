@@ -16,9 +16,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
-        // Always show statusbar
-        UIApplication.shared.setStatusBarHidden(false, with: .none)
-        
         // Setup Data Model - Realm
         let realm = try! Realm()
         
