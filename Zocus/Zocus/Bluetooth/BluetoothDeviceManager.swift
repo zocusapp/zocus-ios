@@ -14,13 +14,13 @@ import UIKit
 @objc
 protocol BluetoothDeviceManagerDelegate
 {
-    optional func peripheralFound(bluetoothManager: BluetoothDeviceManager, peripheral: CBPeripheral, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber)
+    @objc optional func peripheralFound(_ bluetoothManager: BluetoothDeviceManager, peripheral: CBPeripheral, advertisementData: [AnyHashable: Any]!, RSSI: NSNumber)
     
-    optional func bluetoothManagerFinishedScanning(bluetoothManager: BluetoothDeviceManager)
+    @objc optional func bluetoothManagerFinishedScanning(_ bluetoothManager: BluetoothDeviceManager)
     
-    optional func peripheralConnected(bluetoothManager: BluetoothDeviceManager, peripheral: CBPeripheral)
+    @objc optional func peripheralConnected(_ bluetoothManager: BluetoothDeviceManager, peripheral: CBPeripheral)
     
-    optional func peripheralDisconnected(bluetoothManager: BluetoothDeviceManager, peripheral: CBPeripheral)
+    @objc optional func peripheralDisconnected(_ bluetoothManager: BluetoothDeviceManager, peripheral: CBPeripheral)
 }
 
 // MARK: - Constants
@@ -34,19 +34,19 @@ class BluetoothDeviceManager: NSObject
     // MARK: - Shared instances
     let commandManager = CommandManager(devicePlistName: "Devices")
     
-    private var centralManager : CBCentralManager!
-    private var bluetoothOn = false
-    private (set) var peripherals = Set<CBPeripheral>()
+    fileprivate var centralManager : CBCentralManager!
+    fileprivate var bluetoothOn = false
+    fileprivate (set) var peripherals = Set<CBPeripheral>()
     
     var reconnectIfDisconnected = false
     
     // List of acceptable UUIDs for services & characteristics
-    private (set) var availableServiceCBUUIDs = [CBUUID]()
-    private (set) var availableWriteCharacteristicCBUUIDs = [CBUUID]()
+    fileprivate (set) var availableServiceCBUUIDs = [CBUUID]()
+    fileprivate (set) var availableWriteCharacteristicCBUUIDs = [CBUUID]()
     
-    private (set) var characteristicsForPeripheral = [CBPeripheral : CBCharacteristic]()
+    fileprivate (set) var characteristicsForPeripheral = [CBPeripheral : CBCharacteristic]()
     
-    var scanTimer = NSTimer()
+    var scanTimer = Timer()
     
     // Delegate
     var delegate : BluetoothDeviceManagerDelegate?
@@ -75,7 +75,7 @@ class BluetoothDeviceManager: NSObject
             }
         }
         
-        print("DEBUG: Acceptable service UUIDs: \(self.availableServiceCBUUIDs)")
+        log.debug("Acceptable service UUIDs: \(self.availableServiceCBUUIDs)")
     }
     
     func loadAvailableWriteCharacteristics()
@@ -88,13 +88,13 @@ class BluetoothDeviceManager: NSObject
             }
         }
         
-        print("DEBUG: Acceptable write characterisic UUIDs: \(self.availableWriteCharacteristicCBUUIDs)")
+        log.debug("Acceptable write characterisic UUIDs: \(self.availableWriteCharacteristicCBUUIDs)")
     }
     
     
     // MARK: - Bluetooth Functions
     
-    func searchForDevices(time: Double)
+    func searchForDevices(_ time: Double)
     {
         // Cancel any previous requests to stop this
         self.scanTimer.invalidate()
@@ -103,7 +103,7 @@ class BluetoothDeviceManager: NSObject
         self.startSearchingForDevices()
         
         // Create time
-        self.scanTimer = NSTimer.scheduledTimerWithTimeInterval(time,
+        self.scanTimer = Timer.scheduledTimer(timeInterval: time,
                                                                 target: self,
                                                                 selector: #selector(BluetoothDeviceManager.stopSearchingForDevices),
                                                                 userInfo: nil,
@@ -112,90 +112,90 @@ class BluetoothDeviceManager: NSObject
     
     func startSearchingForDevices()
     {
-        print("DEBUG: Start searching for devices")
+        log.debug("Start searching for devices")
         
-        if (self.centralManager.state == .PoweredOn)
+        if (self.centralManager.state == .poweredOn)
         {
             if (self.availableServiceCBUUIDs.count > 0)
             {
-                self.centralManager.scanForPeripheralsWithServices(self.availableServiceCBUUIDs, options: nil)
+                self.centralManager.scanForPeripherals(withServices: self.availableServiceCBUUIDs, options: nil)
             }
             else
             {
-                print("DEBUG: No available service UUIDs to scan")
+                log.debug("No available service UUIDs to scan")
             }
         }
         else
         {
             // Perhaps throw error?
-            print("DEBUG: Bluetooth not powered on, unable to scan for peripherals")
+            log.debug("Bluetooth not powered on, unable to scan for peripherals")
         }
     }
     
     func stopSearchingForDevices()
     {
-        print("DEBUG: Stop searching for devices")
+        log.debug("Stop searching for devices")
         
-        print("DEBUG: Found \(self.peripherals)")
+        log.debug("Found \(self.peripherals)")
         
         self.centralManager.stopScan()
         
         self.delegate?.bluetoothManagerFinishedScanning?(self)
     }
     
-    func connectToPeripherals(peripherals: [CBPeripheral])
+    func connectToPeripherals(_ peripherals: [CBPeripheral])
     {
         for peripheral in peripherals
         {
-            print("DEBUG: Connecting to peripheral \(peripheral.name) - \(peripheral.identifier.UUIDString)")
-            self.centralManager.connectPeripheral(peripheral, options: nil)
+            log.debug("Connecting to peripheral \(peripheral.name) - \(peripheral.identifier.uuidString)")
+            self.centralManager.connect(peripheral, options: nil)
         }
     }
     
-    func disconnectFromPeripherals(peripherals: [CBPeripheral])
+    func disconnectFromPeripherals(_ peripherals: [CBPeripheral])
     {
         for peripheral in peripherals
         {
-            print("DEBUG: Disconnecting from peripheral \(peripheral.name) - \(peripheral.identifier.UUIDString)")
+            log.debug("Disconnecting from peripheral \(peripheral.name) - \(peripheral.identifier.uuidString)")
             self.centralManager.cancelPeripheralConnection(peripheral)
         }
     }
     
-    private func compareCBUUID(uuid1: CBUUID, uuid2: CBUUID) -> Bool
+    fileprivate func compareCBUUID(_ uuid1: CBUUID, uuid2: CBUUID) -> Bool
     {
-        return (uuid1.UUIDString == uuid2.UUIDString)
+        return (uuid1.uuidString == uuid2.uuidString)
     }
     
-    private func findServiceFromUUID(uuid: CBUUID, peripheral: CBPeripheral) -> CBService?
+    fileprivate func findServiceFromUUID(_ uuid: CBUUID, peripheral: CBPeripheral) -> CBService?
     {
         for service in peripheral.services!
         {
-            return self.compareCBUUID(service.UUID, uuid2: uuid) ? service : nil
+            return self.compareCBUUID(service.uuid, uuid2: uuid) ? service : nil
         }
         return nil
     }
     
-    private func findCharacteristicFromUUID(uuid: CBUUID, service: CBService) -> CBCharacteristic?
+    fileprivate func findCharacteristicFromUUID(_ uuid: CBUUID, service: CBService) -> CBCharacteristic?
     {
         for characteristic in service.characteristics!
         {
-            return self.compareCBUUID(characteristic.UUID, uuid2: uuid) ? characteristic : nil
+            return self.compareCBUUID(characteristic.uuid, uuid2: uuid) ? characteristic : nil
         }
         return nil
     }
     
-    private func getAllServicesFromPeripheral(peripheral: CBPeripheral)
+    fileprivate func getAllServicesFromPeripheral(_ peripheral: CBPeripheral)
     {
         peripheral.discoverServices(nil)
     }
     
-    private func getAllCharacteristicsFromPeripheral(peripheral: CBPeripheral)
+    fileprivate func getAllCharacteristicsFromPeripheral(_ peripheral: CBPeripheral)
     {
-        let cbuuids = peripheral.services!.map{ $0.UUID }
+        let cbuuids = peripheral.services!.map{ $0.uuid }
         peripheral.discoverServices(cbuuids)
     }
     
-    func sendCommand(peripheral: CBPeripheral, command: String)
+    func sendCommand(_ peripheral: CBPeripheral, command: String)
     {
         // Fetch cached characteristic for peripheral
         if let characteristic = self.characteristicsForPeripheral[peripheral]
@@ -203,19 +203,19 @@ class BluetoothDeviceManager: NSObject
             if let cmd = Int(command)
             {
                 let buffer = [cmd]
-                let data = NSData(bytes: buffer, length: 1)
+                let data = Data(from: buffer)
                 
                 print("DEBUG: Sending Command: \(command), Data: \(data.description)")
-                peripheral.writeValue(data, forCharacteristic: characteristic, type: .WithoutResponse)
+                peripheral.writeValue(data, for: characteristic, type: .withoutResponse)
             }
             else
             {
-                print("ERROR: Cannot translate command \(command) to Int")
+                log.error("Cannot translate command \(command) to Int")
             }
         }
         else
         {
-            print("ERROR: Could not find CBCharacteristic for CBPeripheral \(peripheral.identifier.UUIDString)")
+            log.error("Could not find CBCharacteristic for CBPeripheral \(peripheral.identifier.uuidString)")
         }
     }
     
@@ -225,75 +225,75 @@ class BluetoothDeviceManager: NSObject
 
 extension BluetoothDeviceManager : CBCentralManagerDelegate
 {
-    func centralManagerDidUpdateState(central: CBCentralManager)
+    func centralManagerDidUpdateState(_ central: CBCentralManager)
     {
         switch (central.state)
         {
-        case .PoweredOn:
-            print("DEBUG: CoreBluetooth BLE hardware is powered on and ready")
+        case .poweredOn:
+            log.debug("CoreBluetooth BLE hardware is powered on and ready")
             self.bluetoothOn = true
             self.searchForDevices(ScanTime)
             
-        case .PoweredOff:
-            print("DEBUG: CoreBluetooth BLE hardware is powered off")
+        case .poweredOff:
+            log.debug("CoreBluetooth BLE hardware is powered off")
             self.bluetoothOn = false
             
-        case .Resetting:
-            print("DEBUG: CoreBluetooth BLE hardware is resetting")
+        case .resetting:
+            log.debug("CoreBluetooth BLE hardware is resetting")
             self.bluetoothOn = false
             
-        case .Unauthorized:
-            print("DEBUG: CoreBluetooth BLE state is unauthorized")
+        case .unauthorized:
+            log.debug("CoreBluetooth BLE state is unauthorized")
             self.bluetoothOn = false
             
-        case .Unknown:
-            print("DEBUG: CoreBluetooth BLE state is unknown")
+        case .unknown:
+            log.debug("CoreBluetooth BLE state is unknown")
             self.bluetoothOn = false
             
-        case .Unsupported:
-            print("DEBUG: CoreBluetooth BLE hardware is unsupported on this platform")
+        case .unsupported:
+            log.debug("CoreBluetooth BLE hardware is unsupported on this platform")
             self.bluetoothOn = false
         }
     }
     
-    func centralManager(central: CBCentralManager, didConnectPeripheral peripheral: CBPeripheral)
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral)
     {
         peripheral.delegate = self
         peripheral.discoverServices(nil)
         
-        print("DEBUG: Connected to peripheral: \(peripheral.identifier.UUIDString)")
+        log.debug("Connected to peripheral: \(peripheral.identifier.uuidString)")
         self.delegate?.peripheralConnected?(self, peripheral: peripheral)
     }
     
-    func centralManager(central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: NSError?)
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?)
     {
-        print("DEBUG: Lost connection to peripheral: \(peripheral.identifier.UUIDString)")
+        log.debug("Lost connection to peripheral: \(peripheral.identifier.uuidString)")
         
         self.delegate?.peripheralDisconnected?(self, peripheral: peripheral)
         
         if (self.reconnectIfDisconnected)
         {
-            self.centralManager.connectPeripheral(peripheral, options: nil)
+            self.centralManager.connect(peripheral, options: nil)
         }
     }
     
-    func centralManager(central: CBCentralManager, didDiscoverPeripheral peripheral: CBPeripheral, advertisementData: [String : AnyObject], RSSI: NSNumber)
+    func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber)
     {
-        print("DEBUG: Found peripheral: \(peripheral.identifier.UUIDString)")
-        print("DEBUG: Advertisement Data: \(advertisementData.description)")
-        print("DEBUG: Name: \(peripheral.name)")
+        log.debug("Found peripheral: \(peripheral.identifier.uuidString)")
+        log.debug("Advertisement Data: \(advertisementData.description)")
+        log.debug("Name: \(peripheral.name)")
         
         self.peripherals.insert(peripheral)
         
-        print("DEBUG: Total scanned peripheral count: \(self.peripherals.count)")
+        log.debug("Total scanned peripheral count: \(self.peripherals.count)")
         
         // Notify delegate of new peripheral found
         self.delegate?.peripheralFound?(self, peripheral: peripheral, advertisementData: advertisementData, RSSI: RSSI)
     }
     
-    func centralManager(central: CBCentralManager, didFailToConnectPeripheral peripheral: CBPeripheral, error: NSError?)
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?)
     {
-        print("ERROR: Failed to connect to peripheral \(peripheral.identifier.UUIDString). Error: \(error?.localizedDescription)", terminator: "")
+        log.error("Failed to connect to peripheral \(peripheral.identifier.uuidString). Error: \(error?.localizedDescription)")
     }
 }
 
@@ -301,18 +301,18 @@ extension BluetoothDeviceManager : CBCentralManagerDelegate
 
 extension BluetoothDeviceManager : CBPeripheralDelegate
 {
-    func peripheral(peripheral: CBPeripheral, didDiscoverServices error: NSError?)
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?)
     {
         if let services = peripheral.services
         {
             for service in services
             {
-                peripheral.discoverCharacteristics(self.availableWriteCharacteristicCBUUIDs, forService: service )
+                peripheral.discoverCharacteristics(self.availableWriteCharacteristicCBUUIDs, for: service )
             }
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didDiscoverCharacteristicsForService service: CBService, error: NSError?)
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?)
     {
         
         for characteristic in service.characteristics!
@@ -321,11 +321,11 @@ extension BluetoothDeviceManager : CBPeripheralDelegate
         }
     }
     
-    func peripheral(peripheral: CBPeripheral, didUpdateValueForCharacteristic characteristic: CBCharacteristic, error: NSError?)
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?)
     {
     }
     
-    func peripheral(peripheral: CBPeripheral, didWriteValueForCharacteristic characteristic: CBCharacteristic, error: NSError?)
+    func peripheral(_ peripheral: CBPeripheral, didWriteValueFor characteristic: CBCharacteristic, error: Error?)
     {
         if (error != nil)
         {

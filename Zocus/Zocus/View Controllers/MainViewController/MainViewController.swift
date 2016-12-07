@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CocoaLumberjack
 import CoreBluetooth
 import RealmSwift
 
@@ -43,40 +42,40 @@ class MainViewController: UIViewController
         didSet {
             self.currentLensLabel.text = "\(self.currentlyUsedLens.name) Lens"
             self.currentLensLabel.textColor = .appGray()
-            self.currentLensLabel.font = .boldSystemFontOfSize(13.0)
+            self.currentLensLabel.font = .boldSystemFont(ofSize: 13.0)
         }
     }
     
     @IBOutlet weak var minLabel: UILabel! {
         didSet {
-            self.minLabel.hidden = true
+            self.minLabel.isHidden = true
             self.minLabel.text = "Min".localized
             self.minLabel.textColor = .appGray()
-            self.minLabel.font = .boldSystemFontOfSize(16.0)
+            self.minLabel.font = .boldSystemFont(ofSize: 16.0)
         }
     }
     
     @IBOutlet weak var maxLabel: UILabel! {
         didSet {
-            self.maxLabel.hidden = true
+            self.maxLabel.isHidden = true
             self.maxLabel.text = "Max".localized
             self.maxLabel.textColor = .appGray()
-            self.maxLabel.font = .systemFontOfSize(16.0)
+            self.maxLabel.font = .systemFont(ofSize: 16.0)
         }
     }
     
     @IBOutlet weak var controlLabel: UILabel! {
         didSet {
-            self.controlLabel.hidden = true
+            self.controlLabel.isHidden = true
             self.controlLabel.text = "Control".localized
             self.controlLabel.textColor = .appGray()
-            self.controlLabel.font = .boldSystemFontOfSize(16.0)
+            self.controlLabel.font = .boldSystemFont(ofSize: 16.0)
         }
     }
     
     @IBOutlet weak var calibrationSwitch: UISwitch! {
         didSet {
-            self.calibrationSwitch.hidden = true
+            self.calibrationSwitch.isHidden = true
             self.calibrationSwitch.onTintColor = .appRed()
             self.calibrationSwitch.tintColor = .appRed()
             self.calibrationSwitch.thumbTintColor = .appGray()
@@ -105,7 +104,7 @@ class MainViewController: UIViewController
     
     func updateActiveSliders()
     {
-        DDLogInfo("Current lens: \(self.currentlyUsedLens)")
+        log.info("Current lens: \(self.currentlyUsedLens)")
         let zoomRange = Float((self.currentlyUsedLens.max_zoom - self.currentlyUsedLens.min_zoom) / 2.0)
         let zoomMidPoint = Float(self.currentlyUsedLens.min_zoom) + zoomRange
         self.zoomSlider.value = zoomMidPoint
@@ -129,7 +128,7 @@ class MainViewController: UIViewController
             self.zoomCalibrationRangeSlider.lowerValue = CalibrationZoomStartLower
             self.zoomCalibrationRangeSlider.upperValue = CalibrationZoomStartUpper
             
-            self.zoomCalibrationRangeSlider.hidden = true
+            self.zoomCalibrationRangeSlider.isHidden = true
             self.zoomCalibrationRangeSlider.trackTintColor = .appRed()
             self.zoomCalibrationRangeSlider.thumbTintColor = .appGray()
             self.zoomCalibrationRangeSlider.trackHighlightTintColor = .appGray()
@@ -147,7 +146,7 @@ class MainViewController: UIViewController
             self.focusCalibrationRangeSlider.lowerValue = CalibrationFocusStartLower
             self.focusCalibrationRangeSlider.upperValue = CalibrationFocusStartUpper
             
-            self.focusCalibrationRangeSlider.hidden = true
+            self.focusCalibrationRangeSlider.isHidden = true
             self.focusCalibrationRangeSlider.trackTintColor = .appRed()
             self.focusCalibrationRangeSlider.thumbTintColor = .appGray()
             self.focusCalibrationRangeSlider.trackHighlightTintColor = .appGray()
@@ -166,56 +165,56 @@ class MainViewController: UIViewController
     
     @IBOutlet weak var myLensesButton: UIButton! {
         didSet {
-            self.myLensesButton.layer.borderColor = UIColor.appGray().CGColor
+            self.myLensesButton.layer.borderColor = UIColor.appGray().cgColor
             self.myLensesButton.layer.borderWidth = 1.0
             self.myLensesButton.layer.cornerRadius = 4.0
             self.myLensesButton.titleLabel?.textColor = .appGray()
-            self.myLensesButton.setTitle("MyLenses".localized, forState: .Normal)
-            self.myLensesButton.titleLabel?.font = UIFont.boldSystemFontOfSize(13.0)
-            self.myLensesButton.setTitleColor(.appGray(), forState: .Normal)
+            self.myLensesButton.setTitle("MyLenses".localized, for: UIControlState())
+            self.myLensesButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13.0)
+            self.myLensesButton.setTitleColor(.appGray(), for: UIControlState())
             self.myLensesButton.contentEdgeInsets = UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)
         }
     }
     
     @IBOutlet weak var calibrateButton: UIButton! {
         didSet {
-            self.calibrateButton.layer.borderColor = UIColor.appGray().CGColor
+            self.calibrateButton.layer.borderColor = UIColor.appGray().cgColor
             self.calibrateButton.layer.borderWidth = 1.0
             self.calibrateButton.layer.cornerRadius = 4.0
             self.calibrateButton.titleLabel?.textColor = .appGray()
-            self.calibrateButton.setTitle("Calibration.Calibrate".localized, forState: .Normal)
-            self.calibrateButton.titleLabel?.font = UIFont.boldSystemFontOfSize(13.0)
-            self.calibrateButton.setTitleColor(.appGray(), forState: .Normal)
+            self.calibrateButton.setTitle("Calibration.Calibrate".localized, for: UIControlState())
+            self.calibrateButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13.0)
+            self.calibrateButton.setTitleColor(.appGray(), for: UIControlState())
             self.calibrateButton.contentEdgeInsets = UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)
         }
     }
     
     @IBOutlet weak var saveZoomButton: UIButton! {
         didSet {
-            self.saveZoomButton.hidden = true
-            self.saveZoomButton.enabled = true
-            self.saveZoomButton.layer.borderColor = UIColor.appGray().CGColor
+            self.saveZoomButton.isHidden = true
+            self.saveZoomButton.isEnabled = true
+            self.saveZoomButton.layer.borderColor = UIColor.appGray().cgColor
             self.saveZoomButton.layer.borderWidth = 1.0
             self.saveZoomButton.layer.cornerRadius = 4.0
             self.saveZoomButton.titleLabel?.textColor = .appGray()
-            self.saveZoomButton.setTitle("Calibration.SaveZoom.Min".localized, forState: .Normal)
-            self.saveZoomButton.titleLabel?.font = UIFont.boldSystemFontOfSize(13.0)
-            self.saveZoomButton.setTitleColor(.appGray(), forState: .Normal)
+            self.saveZoomButton.setTitle("Calibration.SaveZoom.Min".localized, for: UIControlState())
+            self.saveZoomButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13.0)
+            self.saveZoomButton.setTitleColor(.appGray(), for: UIControlState())
             self.saveZoomButton.contentEdgeInsets = UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)
         }
     }
     
     @IBOutlet weak var saveFocusButton: UIButton! {
         didSet {
-            self.saveFocusButton.hidden = true
-            self.saveFocusButton.enabled = true
-            self.saveFocusButton.layer.borderColor = UIColor.appGray().CGColor
+            self.saveFocusButton.isHidden = true
+            self.saveFocusButton.isEnabled = true
+            self.saveFocusButton.layer.borderColor = UIColor.appGray().cgColor
             self.saveFocusButton.layer.borderWidth = 1.0
             self.saveFocusButton.layer.cornerRadius = 4.0
             self.saveFocusButton.titleLabel?.textColor = .appGray()
-            self.saveFocusButton.setTitle("Calibration.SaveFocus.Min".localized, forState: .Normal)
-            self.saveFocusButton.titleLabel?.font = UIFont.boldSystemFontOfSize(13.0)
-            self.saveFocusButton.setTitleColor(.appGray(), forState: .Normal)
+            self.saveFocusButton.setTitle("Calibration.SaveFocus.Min".localized, for: UIControlState())
+            self.saveFocusButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13.0)
+            self.saveFocusButton.setTitleColor(.appGray(), for: UIControlState())
             self.saveFocusButton.contentEdgeInsets = UIEdgeInsetsMake(0.0, 10.0, 0.0, 10.0)
         }
     }
@@ -225,25 +224,25 @@ class MainViewController: UIViewController
     @IBOutlet weak var refreshButton: UIButton!
     
     // MARK: - Bluetooth Manager
-    private let bluetoothDeviceManagerInstance = BluetoothDeviceManager.sharedInstance
-    private let activePeripheralsManagerInstance = ActivePeripheralsManager.sharedInstance
+    fileprivate let bluetoothDeviceManagerInstance = BluetoothDeviceManager.sharedInstance
+    fileprivate let activePeripheralsManagerInstance = ActivePeripheralsManager.sharedInstance
     
-    private var searching : Bool = false
-    private let ScanningTimeInSeconds = 20.0
+    fileprivate var searching : Bool = false
+    fileprivate let ScanningTimeInSeconds = 20.0
     
     // MARK: - Data
     var realm : Realm!
     var lenses : Results<Lens> {
         get {
-            return self.realm!.objects(Lens).sorted("name")
+            return self.realm!.objects(Lens.self).sorted(byProperty: "name")
         }
     }
     
     var currentlyUsedLens : Lens {
         get {
-            return self.realm!.objects(Lens)
+            return self.realm!.objects(Lens.self)
                 .filter("currently_used = %@", true)
-                .sorted("name").first!
+                .sorted(byProperty: "name").first!
         }
     }
     
@@ -257,58 +256,58 @@ class MainViewController: UIViewController
     
     var currentUIState : UIState = .Active {
         didSet {
-            DDLogInfo("Setting UIState: \(self.currentUIState.rawValue)")
+            log.info("Setting UIState: \(self.currentUIState.rawValue)")
             switch (self.currentUIState)
             {
             case .Active:
                  self.updateActiveSliders()
                  
-                self.calibrateButton.setTitle("Calibration.Calibrate".localized, forState: .Normal)
-                self.calibrateButton.setTitleColor(.appGray(), forState: .Normal)
-                self.calibrateButton.layer.borderColor = UIColor.appGray().CGColor
+                self.calibrateButton.setTitle("Calibration.Calibrate".localized, for: UIControlState())
+                self.calibrateButton.setTitleColor(.appGray(), for: UIControlState())
+                self.calibrateButton.layer.borderColor = UIColor.appGray().cgColor
                 
-                self.zoomSlider.hidden = false
-                self.focusSlider.hidden = false
-                self.zoomCalibrationRangeSlider.hidden = true
-                self.focusCalibrationRangeSlider.hidden = true
-                self.saveZoomButton.hidden = true
-                self.saveFocusButton.hidden = true
+                self.zoomSlider.isHidden = false
+                self.focusSlider.isHidden = false
+                self.zoomCalibrationRangeSlider.isHidden = true
+                self.focusCalibrationRangeSlider.isHidden = true
+                self.saveZoomButton.isHidden = true
+                self.saveFocusButton.isHidden = true
                 
                 // Switch
-                self.minLabel.hidden = true
-                self.maxLabel.hidden = true
-                self.controlLabel.hidden = true
+                self.minLabel.isHidden = true
+                self.maxLabel.isHidden = true
+                self.controlLabel.isHidden = true
                  
-                self.calibrationSwitch.hidden = true
-                self.calibrationSwitch.on = false
+                self.calibrationSwitch.isHidden = true
+                self.calibrationSwitch.isOn = false
         
             case .Calibration:
                  self.updateCalibrationSliders()
                 
                 // Sliders
-                self.calibrateButton.setTitle("Calibration.Exit".localized, forState: .Normal)
-                self.calibrateButton.setTitleColor(.appRed(), forState: .Normal)
-                self.calibrateButton.layer.borderColor = UIColor.appRed().CGColor
+                self.calibrateButton.setTitle("Calibration.Exit".localized, for: UIControlState())
+                self.calibrateButton.setTitleColor(.appRed(), for: UIControlState())
+                self.calibrateButton.layer.borderColor = UIColor.appRed().cgColor
                 
-                self.zoomSlider.hidden = true
-                self.focusSlider.hidden = true
+                self.zoomSlider.isHidden = true
+                self.focusSlider.isHidden = true
 
-                self.zoomCalibrationRangeSlider.hidden = false
+                self.zoomCalibrationRangeSlider.isHidden = false
                 self.zoomCalibrationRangeSlider.alpha = 1.0
-                self.zoomCalibrationRangeSlider.enabled = true
-                self.saveZoomButton.hidden = false
+                self.zoomCalibrationRangeSlider.isEnabled = true
+                self.saveZoomButton.isHidden = false
                 
-                self.focusCalibrationRangeSlider.hidden = false
+                self.focusCalibrationRangeSlider.isHidden = false
                 self.focusCalibrationRangeSlider.alpha = 1.0
-                self.focusCalibrationRangeSlider.enabled = true
-                self.saveFocusButton.hidden = false
+                self.focusCalibrationRangeSlider.isEnabled = true
+                self.saveFocusButton.isHidden = false
                 
                 // Switch
-                self.minLabel.hidden = false
-                self.maxLabel.hidden = false
-                self.controlLabel.hidden = false
-                self.calibrationSwitch.hidden = false
-                self.calibrationSwitch.on = false
+                self.minLabel.isHidden = false
+                self.maxLabel.isHidden = false
+                self.controlLabel.isHidden = false
+                self.calibrationSwitch.isHidden = false
+                self.calibrationSwitch.isOn = false
                 
                 // Show calibration explanation
                 self.showAlert("Calibration.Explanation".localized)
@@ -326,15 +325,15 @@ class MainViewController: UIViewController
     
     var currentCalibrationStep : CalibrationStep = .Min {
         didSet {
-            DDLogInfo("Setting calibration value for \(self.currentCalibrationStep.rawValue) for \(self.currentUIState.rawValue) step")
+            log.info("Setting calibration value for \(self.currentCalibrationStep.rawValue) for \(self.currentUIState.rawValue) step")
             switch (self.currentCalibrationStep)
             {
             case .Min:
-                self.minLabel.font = .boldSystemFontOfSize(16.0)
-                self.maxLabel.font = .systemFontOfSize(16.0)
+                self.minLabel.font = .boldSystemFont(ofSize: 16.0)
+                self.maxLabel.font = .systemFont(ofSize: 16.0)
                 
-                self.saveZoomButton.setTitle("Calibration.SaveZoom.Min".localized, forState: .Normal)
-                self.saveFocusButton.setTitle("Calibration.SaveFocus.Min".localized, forState: .Normal)
+                self.saveZoomButton.setTitle("Calibration.SaveZoom.Min".localized, for: UIControlState())
+                self.saveFocusButton.setTitle("Calibration.SaveFocus.Min".localized, for: UIControlState())
                 
                 self.zoomCalibrationRangeSlider.lowerThumbLayer.enabled = true
                 self.focusCalibrationRangeSlider.lowerThumbLayer.enabled = true
@@ -343,11 +342,11 @@ class MainViewController: UIViewController
                 self.focusCalibrationRangeSlider.upperThumbLayer.enabled = false
                 
             case .Max:
-                self.minLabel.font = .systemFontOfSize(16.0)
-                self.maxLabel.font = .boldSystemFontOfSize(16.0)
+                self.minLabel.font = .systemFont(ofSize: 16.0)
+                self.maxLabel.font = .boldSystemFont(ofSize: 16.0)
                 
-                self.saveZoomButton.setTitle("Calibration.SaveZoom.Max".localized, forState: .Normal)
-                self.saveFocusButton.setTitle("Calibration.SaveFocus.Max".localized, forState: .Normal)
+                self.saveZoomButton.setTitle("Calibration.SaveZoom.Max".localized, for: UIControlState())
+                self.saveFocusButton.setTitle("Calibration.SaveFocus.Max".localized, for: UIControlState())
                 
                 self.zoomCalibrationRangeSlider.lowerThumbLayer.enabled = false
                 self.focusCalibrationRangeSlider.lowerThumbLayer.enabled = false
@@ -369,7 +368,7 @@ class MainViewController: UIViewController
         self.automaticallyAdjustsScrollViewInsets = false
         
         // Compensate for hidden nav bar by extending the scroll view
-        self.edgesForExtendedLayout = .All
+        self.edgesForExtendedLayout = .all
         
         self.bluetoothDeviceManagerInstance.delegate = self
         self.bluetoothDeviceManagerInstance.reconnectIfDisconnected = true
@@ -380,15 +379,15 @@ class MainViewController: UIViewController
     // MARK: - IB Actions
 
     // Use same slider action - different functions (zoom, focus) determined by value range
-    @IBAction func sliderValueChanged(sender: UISlider)
+    @IBAction func sliderValueChanged(_ sender: UISlider)
     {
         let roundedValue = Int(sender.value)
-        DDLogVerbose("Slider Value: \(roundedValue)")
+        log.verbose("Slider Value: \(roundedValue)")
         self.sendCommand("\(roundedValue)")
     }
     
     // Use same slider action - different functions (zoom, focus) determined by value range
-    @IBAction func calibrationRangeSliderValueChanged(sender: RangeSlider)
+    @IBAction func calibrationRangeSliderValueChanged(_ sender: RangeSlider)
     {
         let roundedValue : Int!
         switch (self.currentCalibrationStep)
@@ -398,18 +397,18 @@ class MainViewController: UIViewController
         case .Max:
             roundedValue = Int(sender.upperValue)
         }
-        DDLogVerbose("Calbration Slider Value: \(roundedValue)")
+        log.verbose("Calbration Slider Value: \(roundedValue)")
         self.sendCommand("\(roundedValue)")
     }
     
-    @IBAction func sliderTappedAction(sender: UITapGestureRecognizer)
+    @IBAction func sliderTappedAction(_ sender: UITapGestureRecognizer)
     {
         if let slider = sender.view as? UISlider
         {
-            if slider.highlighted { return }
+            if slider.isHighlighted { return }
             
-            let point = sender.locationInView(slider)
-            let percentage = Float(point.x / CGRectGetWidth(slider.bounds))
+            let point = sender.location(in: slider)
+            let percentage = Float(point.x / slider.bounds.width)
             let delta = percentage * (slider.maximumValue - slider.minimumValue)
             let value = slider.minimumValue + delta
             slider.setValue(value, animated: true)
@@ -418,34 +417,34 @@ class MainViewController: UIViewController
         }
     }
     
-    @IBAction func refreshButtonPressed(sender: UIButton)
+    @IBAction func refreshButtonPressed(_ sender: UIButton)
     {
         self.startScanning()
     }
     
-    @IBAction func myLensesButtonPressed(sender: UIButton)
+    @IBAction func myLensesButtonPressed(_ sender: UIButton)
     {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        if let vc = storyboard.instantiateViewControllerWithIdentifier("LensesViewController") as? LensesViewController
+        if let vc = storyboard.instantiateViewController(withIdentifier: "LensesViewController") as? LensesViewController
         {
             vc.realm = self.realm
-            vc.modalPresentationStyle = .Popover
-            self.presentViewController(vc, animated: true, completion: nil)
+            vc.modalPresentationStyle = .popover
+            self.present(vc, animated: true, completion: nil)
         
             let popController = vc.popoverPresentationController
-            popController?.permittedArrowDirections = .Up
+            popController?.permittedArrowDirections = .up
             popController?.sourceView = self.view
             popController?.sourceRect = self.myLensesButton.frame
             
             let width = self.view.frame.width / 3.0
             let height = (CGFloat(self.lenses.count + 1) * 44.0) // (lens count + 1) * cell height
-            vc.preferredContentSize = CGSizeMake(width, height)
+            vc.preferredContentSize = CGSize(width: width, height: height)
             
             vc.delegate = self
         }
     }
     
-    @IBAction func calibratePressed(sender: UIButton)
+    @IBAction func calibratePressed(_ sender: UIButton)
     {
         switch (self.currentUIState)
         {
@@ -456,9 +455,9 @@ class MainViewController: UIViewController
         }
     }
     
-    @IBAction func calibrationSwitchValueChanged(sender: UISwitch)
+    @IBAction func calibrationSwitchValueChanged(_ sender: UISwitch)
     {
-        if (sender.on)
+        if (sender.isOn)
         {
             self.currentCalibrationStep = .Max
         }
@@ -468,11 +467,11 @@ class MainViewController: UIViewController
         }
     }
     
-    @IBAction func saveZoomButtonPressed(sender: AnyObject)
+    @IBAction func saveZoomButtonPressed(_ sender: AnyObject)
     {
         do
         {
-            DDLogInfo("Updating lens '\(self.currentlyUsedLens.name)' calibration value for \(self.currentCalibrationStep) Zoom")
+            log.info("Updating lens '\(self.currentlyUsedLens.name)' calibration value for \(self.currentCalibrationStep) Zoom")
             try self.realm.write {
                 switch (self.currentCalibrationStep)
                 {
@@ -486,17 +485,17 @@ class MainViewController: UIViewController
         }
         catch
         {
-            DDLogError("Failed to update lens '\(self.currentlyUsedLens.name)' calibration value for \(self.currentCalibrationStep) Zoom")
+            log.error("Failed to update lens '\(self.currentlyUsedLens.name)' calibration value for \(self.currentCalibrationStep) Zoom")
             
             self.showAlert("AddLens.SaveError".localized)
         }
     }
     
-    @IBAction func saveFocusButtonPressed(sender: AnyObject)
+    @IBAction func saveFocusButtonPressed(_ sender: AnyObject)
     {
         do
         {
-            DDLogInfo("Updating lens '\(self.currentlyUsedLens.name)' calibration value for \(self.currentCalibrationStep) Focus")
+            log.info("Updating lens '\(self.currentlyUsedLens.name)' calibration value for \(self.currentCalibrationStep) Focus")
             try self.realm.write {
                 switch (self.currentCalibrationStep)
                 {
@@ -510,7 +509,7 @@ class MainViewController: UIViewController
         }
         catch
         {
-            DDLogError("Failed to update lens '\(self.currentlyUsedLens.name)' calibration value for \(self.currentCalibrationStep) Focus")
+            log.error("Failed to update lens '\(self.currentlyUsedLens.name)' calibration value for \(self.currentCalibrationStep) Focus")
             
             self.showAlert("AddLens.SaveError".localized)
         }
@@ -518,12 +517,12 @@ class MainViewController: UIViewController
     
     // MARK: - Bluetooth Methods
     
-    private func startScanning()
+    fileprivate func startScanning()
     {
         // Scan again
         self.searching = true
         self.activityIndicator.startAnimating()
-        self.refreshButton.hidden = true
+        self.refreshButton.isHidden = true
         
         self.bluetoothDeviceManagerInstance.disconnectFromPeripherals(Array(self.activePeripheralsManagerInstance.scannedCBPeripherals))
         self.activePeripheralsManagerInstance.scannedPeripherals.removeAll() // clear cache
@@ -531,11 +530,11 @@ class MainViewController: UIViewController
     }
     
     // Command Management
-    func sendCommand(value: String)
+    func sendCommand(_ value: String)
     {
         for peripheral in self.activePeripheralsManagerInstance.scannedPeripherals
         {
-            DDLogInfo("Sending \(value) to \(peripheral.cbPeripheral)")
+            log.info("Sending \(value) to \(peripheral.cbPeripheral)")
             self.bluetoothDeviceManagerInstance.sendCommand(peripheral.cbPeripheral, command: value)
         }
     }
@@ -547,16 +546,16 @@ class MainViewController: UIViewController
 extension MainViewController : BluetoothDeviceManagerDelegate
 {
     // Helper function to find the used Service UUID for this peripheral
-    private func findPeripheralsUsedServiceUUIDFromActiveList(advertisedServiceKeys: [CBUUID]) -> String
+    fileprivate func findPeripheralsUsedServiceUUIDFromActiveList(_ advertisedServiceKeys: [CBUUID]) -> String
     {
         let activeServiceUUIDSet = Set(self.bluetoothDeviceManagerInstance.availableServiceCBUUIDs)
         let peripheralServiceUUIDSet = Set(advertisedServiceKeys)
         
-        let matchingServiceUUIDSet = activeServiceUUIDSet.intersect(peripheralServiceUUIDSet)
+        let matchingServiceUUIDSet = activeServiceUUIDSet.intersection(peripheralServiceUUIDSet)
         if (matchingServiceUUIDSet.count > 0)
         {
             let matchingServiceUUIDArray = Array(matchingServiceUUIDSet)
-            return matchingServiceUUIDArray[0].UUIDString
+            return matchingServiceUUIDArray[0].uuidString
         }
         else
         {
@@ -564,11 +563,11 @@ extension MainViewController : BluetoothDeviceManagerDelegate
         }
     }
     
-    func peripheralFound(bluetoothManager: BluetoothDeviceManager, peripheral: CBPeripheral, advertisementData: [NSObject : AnyObject]!, RSSI: NSNumber)
+    func peripheralFound(_ bluetoothManager: BluetoothDeviceManager, peripheral: CBPeripheral, advertisementData: [AnyHashable: Any]!, RSSI: NSNumber)
     {
         // Extract the device name and advertising data peripheral uses
         if let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String,
-            advertisedServiceKeys = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID]
+            let advertisedServiceKeys = advertisementData[CBAdvertisementDataServiceUUIDsKey] as? [CBUUID]
         {
             // Get Service UUID peripheral uses
             let usedServiceUUID = self.findPeripheralsUsedServiceUUIDFromActiveList(advertisedServiceKeys)
@@ -584,26 +583,26 @@ extension MainViewController : BluetoothDeviceManagerDelegate
         }
         else
         {
-            DDLogError("Peripheral does not contain \(CBAdvertisementDataLocalNameKey) OR \(CBAdvertisementDataServiceUUIDsKey) in advertising data. Skipping peripheral.")
+            log.error("Peripheral does not contain \(CBAdvertisementDataLocalNameKey) OR \(CBAdvertisementDataServiceUUIDsKey) in advertising data. Skipping peripheral.")
             return
         }
     }
     
-    func bluetoothManagerFinishedScanning(bluetoothManager: BluetoothDeviceManager)
+    func bluetoothManagerFinishedScanning(_ bluetoothManager: BluetoothDeviceManager)
     {
         self.activityIndicator.stopAnimating()
-        self.refreshButton.hidden = false
+        self.refreshButton.isHidden = false
         self.bluetoothDeviceManagerInstance.connectToPeripherals(Array(self.activePeripheralsManagerInstance.scannedCBPeripherals))
     }
     
     // MARK: - Alerts
-    func showAlert(message: String)
+    func showAlert(_ message: String)
     {
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
-        let actionOk = UIAlertAction(title: "Alert.OK".localized, style: .Default, handler: nil)
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let actionOk = UIAlertAction(title: "Alert.OK".localized, style: .default, handler: nil)
         alertController.addAction(actionOk)
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.presentViewController(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.present(alertController, animated: true, completion: nil)
         })
     }
 }

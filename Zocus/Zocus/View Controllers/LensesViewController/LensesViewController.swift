@@ -8,17 +8,16 @@
 
 import UIKit
 import RealmSwift
-import CocoaLumberjack
 
 protocol LensesViewControllerDelegate
 {
-    func addLensButtonPressed(viewController: LensesViewController)
+    func addLensButtonPressed(_ viewController: LensesViewController)
     
-    func lensSelected(viewController: LensesViewController, lens: Lens)
+    func lensSelected(_ viewController: LensesViewController, lens: Lens)
     
-    func lensDeleted(viewController: LensesViewController, lens: Lens)
+    func lensDeleted(_ viewController: LensesViewController, lens: Lens)
     
-    func lensEdited(viewController: LensesViewController, lens: Lens)
+    func lensEdited(_ viewController: LensesViewController, lens: Lens)
 }
 
 class LensesViewController: UIViewController
@@ -27,9 +26,9 @@ class LensesViewController: UIViewController
     
     @IBOutlet weak var addLensButton: UIButton! {
         didSet {
-            self.addLensButton.setTitle("AddLens.Button".localized, forState: .Normal)
-            self.addLensButton.setTitleColor(.appGray(), forState: .Normal)
-            self.addLensButton.titleLabel?.font = UIFont.boldSystemFontOfSize(13.0)
+            self.addLensButton.setTitle("AddLens.Button".localized, for: UIControlState())
+            self.addLensButton.setTitleColor(.appGray(), for: UIControlState())
+            self.addLensButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 13.0)
         }
     }
     
@@ -37,7 +36,7 @@ class LensesViewController: UIViewController
         didSet {
             self.tableView.delegate = self
             self.tableView.dataSource = self
-            self.tableView.separatorStyle = .SingleLine
+            self.tableView.separatorStyle = .singleLine
             self.tableView.contentInset = UIEdgeInsetsMake(0.0, 0.0, 0.0, 0.0)
             self.tableView.tableFooterView = UIView(frame: .zero)
             self.tableView.allowsMultipleSelection = false
@@ -51,7 +50,7 @@ class LensesViewController: UIViewController
     var realm : Realm!
     var lenses : Results<Lens> {
         get {
-            return self.realm!.objects(Lens).sorted("name")
+            return self.realm!.objects(Lens.self).sorted(byProperty: "name")
         }
     }
     
@@ -67,13 +66,13 @@ class LensesViewController: UIViewController
         self.automaticallyAdjustsScrollViewInsets = false
         
         // Compensate for hidden nav bar by extending the scroll view
-        self.edgesForExtendedLayout = .All
+        self.edgesForExtendedLayout = .all
     }
     
     // MARK: - UI Actions
-    @IBAction func addLensButtonPressed(sender: AnyObject)
+    @IBAction func addLensButtonPressed(_ sender: AnyObject)
     {
-        DDLogInfo("Add lens button pressed")
+        log.info("Add lens button pressed")
         self.delegate?.addLensButtonPressed(self)
     }
 }

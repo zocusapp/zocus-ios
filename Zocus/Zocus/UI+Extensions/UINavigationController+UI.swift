@@ -16,8 +16,8 @@ extension UINavigationController
     {
         self.navigationBar.setBackgroundImage(
             UIImage(),
-            forBarPosition: .Any,
-            barMetrics: .Default)
+            for: .any,
+            barMetrics: .default)
         
         self.navigationBar.shadowImage = UIImage()
     }

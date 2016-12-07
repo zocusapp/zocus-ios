@@ -7,19 +7,18 @@
 //
 
 import UIKit
-import CocoaLumberjack
 
 extension LensesViewController : UITableViewDelegate
 {
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
         return 44.0
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         let lens = self.lenses[indexPath.row]
-        DDLogInfo("Lens selected \(lens.name)")
+        log.info("Lens selected \(lens.name)")
         self.delegate?.lensSelected(self, lens: lens)
     }
 }

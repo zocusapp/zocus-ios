@@ -7,10 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5ABCD7A5DFAFF9BD71FC160D /* Pods_Zocus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C7B01104D90036A191509B33 /* Pods_Zocus.framework */; };
 		6A1D796C1CBA3DB300A1D3FF /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6A1D796B1CBA3DB300A1D3FF /* Launch Screen.storyboard */; };
-		6A1D79701CBA404600A1D3FF /* CrashlyticsLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1D796D1CBA404600A1D3FF /* CrashlyticsLogger.swift */; };
-		6A1D79711CBA404600A1D3FF /* CustomLogFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1D796E1CBA404600A1D3FF /* CustomLogFormatter.swift */; };
-		6A1D79721CBA404600A1D3FF /* DDTTYLogger+XcodeColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1D796F1CBA404600A1D3FF /* DDTTYLogger+XcodeColor.swift */; };
 		6A1D797C1CBA474F00A1D3FF /* ActivePeripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1D79761CBA474F00A1D3FF /* ActivePeripheral.swift */; };
 		6A1D797D1CBA474F00A1D3FF /* ActivePeripheralsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1D79771CBA474F00A1D3FF /* ActivePeripheralsManager.swift */; };
 		6A1D797E1CBA474F00A1D3FF /* BluetoothDeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A1D79781CBA474F00A1D3FF /* BluetoothDeviceManager.swift */; };
@@ -36,14 +34,14 @@
 		6AF33A0C1CB8FD5B009D6B88 /* UIBarButtonItem+AppButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF33A0B1CB8FD5B009D6B88 /* UIBarButtonItem+AppButtons.swift */; };
 		6AF33A0E1CB8FE42009D6B88 /* UINavigationController+UI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AF33A0D1CB8FE42009D6B88 /* UINavigationController+UI.swift */; };
 		8B031C36603649425AEB98C3 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91266EA4A61F17BCB4B49524 /* Pods.framework */; };
+		FA0612ED1DF82FE60080B021 /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0612EC1DF82FE60080B021 /* Logging.swift */; };
+		FA0612EF1DF835E70080B021 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0612EE1DF835E70080B021 /* Data.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14CC469F1D51E646C2FC684A /* Pods-Zocus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zocus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Zocus/Pods-Zocus.debug.xcconfig"; sourceTree = "<group>"; };
 		33A5FE80D20CA4ADD8FE9302 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		6A1D796B1CBA3DB300A1D3FF /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		6A1D796D1CBA404600A1D3FF /* CrashlyticsLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrashlyticsLogger.swift; sourceTree = "<group>"; };
-		6A1D796E1CBA404600A1D3FF /* CustomLogFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomLogFormatter.swift; sourceTree = "<group>"; };
-		6A1D796F1CBA404600A1D3FF /* DDTTYLogger+XcodeColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DDTTYLogger+XcodeColor.swift"; sourceTree = "<group>"; };
 		6A1D79761CBA474F00A1D3FF /* ActivePeripheral.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivePeripheral.swift; sourceTree = "<group>"; };
 		6A1D79771CBA474F00A1D3FF /* ActivePeripheralsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivePeripheralsManager.swift; sourceTree = "<group>"; };
 		6A1D79781CBA474F00A1D3FF /* BluetoothDeviceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BluetoothDeviceManager.swift; sourceTree = "<group>"; };
@@ -72,6 +70,10 @@
 		6AF33A0D1CB8FE42009D6B88 /* UINavigationController+UI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+UI.swift"; sourceTree = "<group>"; };
 		91266EA4A61F17BCB4B49524 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF2B9E0749303609CBC2A1D8 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		C7B01104D90036A191509B33 /* Pods_Zocus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Zocus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F486B77A424951C9B1DDCAF2 /* Pods-Zocus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Zocus.release.xcconfig"; path = "Pods/Target Support Files/Pods-Zocus/Pods-Zocus.release.xcconfig"; sourceTree = "<group>"; };
+		FA0612EC1DF82FE60080B021 /* Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		FA0612EE1DF835E70080B021 /* Data.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B031C36603649425AEB98C3 /* Pods.framework in Frameworks */,
+				5ABCD7A5DFAFF9BD71FC160D /* Pods_Zocus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -91,6 +94,8 @@
 			children = (
 				BF2B9E0749303609CBC2A1D8 /* Pods.debug.xcconfig */,
 				33A5FE80D20CA4ADD8FE9302 /* Pods.release.xcconfig */,
+				14CC469F1D51E646C2FC684A /* Pods-Zocus.debug.xcconfig */,
+				F486B77A424951C9B1DDCAF2 /* Pods-Zocus.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -98,9 +103,7 @@
 		6A1D79731CBA406100A1D3FF /* Logging */ = {
 			isa = PBXGroup;
 			children = (
-				6A1D796D1CBA404600A1D3FF /* CrashlyticsLogger.swift */,
-				6A1D796E1CBA404600A1D3FF /* CustomLogFormatter.swift */,
-				6A1D796F1CBA404600A1D3FF /* DDTTYLogger+XcodeColor.swift */,
+				FA0612EC1DF82FE60080B021 /* Logging.swift */,
 			);
 			path = Logging;
 			sourceTree = "<group>";
@@ -125,6 +128,7 @@
 				6A1D79791CBA474F00A1D3FF /* CommandManager.swift */,
 				6A1D797A1CBA474F00A1D3FF /* Devices.plist */,
 				6A1D797B1CBA474F00A1D3FF /* Peripheral.swift */,
+				FA0612EE1DF835E70080B021 /* Data.swift */,
 			);
 			path = Bluetooth;
 			sourceTree = "<group>";
@@ -241,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				91266EA4A61F17BCB4B49524 /* Pods.framework */,
+				C7B01104D90036A191509B33 /* Pods_Zocus.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -252,10 +257,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6AF33A041CB8FB70009D6B88 /* Build configuration list for PBXNativeTarget "Zocus" */;
 			buildPhases = (
-				FF2174BFEE22E3612F02C785 /* Check Pods Manifest.lock */,
+				FF2174BFEE22E3612F02C785 /* [CP] Check Pods Manifest.lock */,
 				6AF339EE1CB8FB70009D6B88 /* Sources */,
 				6AF339EF1CB8FB70009D6B88 /* Frameworks */,
 				6AF339F01CB8FB70009D6B88 /* Resources */,
+				0ECEE41D893DB77A188E0B2B /* [CP] Embed Pods Frameworks */,
+				06E517ADB16C7C63F5DA76D6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -273,11 +280,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = "";
 				TargetAttributes = {
 					6AF339F11CB8FB70009D6B88 = {
 						CreatedOnToolsVersion = 7.3;
+						LastSwiftMigration = 0810;
 					};
 				};
 			};
@@ -315,19 +323,49 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		FF2174BFEE22E3612F02C785 /* Check Pods Manifest.lock */ = {
+		06E517ADB16C7C63F5DA76D6 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Zocus/Pods-Zocus-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0ECEE41D893DB77A188E0B2B /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Zocus/Pods-Zocus-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF2174BFEE22E3612F02C785 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -347,19 +385,18 @@
 				6A1D79831CBA4D5500A1D3FF /* UISlider+Value.swift in Sources */,
 				6AF339F81CB8FB70009D6B88 /* MainViewController.swift in Sources */,
 				6A1D797C1CBA474F00A1D3FF /* ActivePeripheral.swift in Sources */,
-				6A1D79701CBA404600A1D3FF /* CrashlyticsLogger.swift in Sources */,
+				FA0612ED1DF82FE60080B021 /* Logging.swift in Sources */,
 				6A1D797D1CBA474F00A1D3FF /* ActivePeripheralsManager.swift in Sources */,
 				6AE970021D460856005A5DF7 /* UIColor+RGBA.swift in Sources */,
 				6AE96FFB1D4603EA005A5DF7 /* String+Localization.swift in Sources */,
 				6AE96FF71D460243005A5DF7 /* Realm+Helpers.swift in Sources */,
+				FA0612EF1DF835E70080B021 /* Data.swift in Sources */,
 				6AC880B31D461365004D211C /* LensesViewController.swift in Sources */,
 				6AF339F61CB8FB70009D6B88 /* AppDelegate.swift in Sources */,
 				6AC880B91D4651E5004D211C /* RangeSlider.swift in Sources */,
 				6AC880B71D4613B3004D211C /* LensesViewController+UITableViewDataSource.swift in Sources */,
-				6A1D79721CBA404600A1D3FF /* DDTTYLogger+XcodeColor.swift in Sources */,
 				6A1D79811CBA474F00A1D3FF /* Peripheral.swift in Sources */,
 				6AC880B51D461398004D211C /* LensesViewController+UITableViewDelegate.swift in Sources */,
-				6A1D79711CBA404600A1D3FF /* CustomLogFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,8 +429,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -415,7 +454,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -438,8 +477,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -455,9 +496,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -465,7 +507,7 @@
 		};
 		6AF33A051CB8FB70009D6B88 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF2B9E0749303609CBC2A1D8 /* Pods.debug.xcconfig */;
+			baseConfigurationReference = 14CC469F1D51E646C2FC684A /* Pods-Zocus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -475,12 +517,13 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Zocus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		6AF33A061CB8FB70009D6B88 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 33A5FE80D20CA4ADD8FE9302 /* Pods.release.xcconfig */;
+			baseConfigurationReference = F486B77A424951C9B1DDCAF2 /* Pods-Zocus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -490,6 +533,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.Zocus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

@@ -20,7 +20,7 @@ class CommandManager: NSObject
     
     static let allValues : [Commands] = [.OnOff, .Stop]
     
-    private (set) var devicesDictionary : [String : AnyObject]!
+    fileprivate (set) var devicesDictionary : [String : AnyObject]!
     
     var availableServices : [String]? {
         get {
@@ -50,10 +50,10 @@ class CommandManager: NSObject
         self.loadCommandsForServiceUUIDs(devicePlistName)
     }
 
-    func getManufacturerForServiceUUID(serviceUUID: String) -> String?
+    func getManufacturerForServiceUUID(_ serviceUUID: String) -> String?
     {
         if let serviceDict = self.devicesDictionary[serviceUUID] as? [String : AnyObject],
-            mft = serviceDict["Manufacturer"] as? String
+            let mft = serviceDict["Manufacturer"] as? String
         {
             return mft
         }
@@ -63,12 +63,12 @@ class CommandManager: NSObject
         }
     }
     
-    func getCommandCodeForServiceUUIDAndCommandString(serviceUUID: String, command: Commands) -> String?
+    func getCommandCodeForServiceUUIDAndCommandString(_ serviceUUID: String, command: Commands) -> String?
     {
         let commandString = command.rawValue
         if let serviceDict = self.devicesDictionary[serviceUUID] as? [String : AnyObject],
-            commands = serviceDict["Commands"] as? [String : String],
-            commandCode = commands[commandString]
+            let commands = serviceDict["Commands"] as? [String : String],
+            let commandCode = commands[commandString]
         {
             return commandCode
         }
@@ -79,16 +79,16 @@ class CommandManager: NSObject
     }
     
     // Load in to memory the commands and service uuids for all devices app can utilise
-    private func loadCommandsForServiceUUIDs(devicePlistName: String = DevicePlistName)
+    fileprivate func loadCommandsForServiceUUIDs(_ devicePlistName: String = DevicePlistName)
     {
-        if let path = NSBundle.mainBundle().pathForResource(devicePlistName, ofType: "plist"),
-            devicesDict = NSDictionary(contentsOfFile: path) as? [String : AnyObject]
+        if let path = Bundle.main.path(forResource: devicePlistName, ofType: "plist"),
+            let devicesDict = NSDictionary(contentsOfFile: path) as? [String : AnyObject]
         {
             self.devicesDictionary = devicesDict
         }
         else
         {
-            print("ERROR: Could not load \(DevicePlistName) settings")
+            log.error("Could not load \(DevicePlistName) settings")
             abort()
         }
     }

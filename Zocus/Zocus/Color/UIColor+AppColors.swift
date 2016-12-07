@@ -13,7 +13,7 @@ extension UIColor
 {
     static func defaultButtonColor() -> UIColor
     {
-        return UIButton(type: UIButtonType.System).titleColorForState(.Normal)!
+        return UIButton(type: UIButtonType.system).titleColor(for: UIControlState())!
     }
     
     static func appRed() -> UIColor

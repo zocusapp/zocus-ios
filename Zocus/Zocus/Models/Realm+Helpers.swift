@@ -8,16 +8,15 @@
 
 import Foundation
 import RealmSwift
-import CocoaLumberjack
 
 func deleteAllLenses()
 {
     let realm = try! Realm()
-    DDLogInfo("Deleting lenses")
+    log.info("Deleting lenses")
     do
     {
         try realm.write {
-            realm.objects(Lens).forEach({ (d) in
+            realm.objects(Lens.self).forEach({ (d) in
                 realm.delete(d)
             })
         }
@@ -25,7 +24,7 @@ func deleteAllLenses()
     }
     catch
     {
-        DDLogError("Failed to delete realm")
+        log.error("Failed to delete realm")
     }
 }
 
@@ -35,10 +34,10 @@ func checkAndCreateDefaultLens()
     let realm = try! Realm()
     
     // Create default lens if no lenses exist
-    let lenses = realm.objects(Lens)
+    let lenses = realm.objects(Lens.self)
     if (lenses.count == 0)
     {
-        DDLogDebug("Adding Default Lens")
+        log.debug("Adding Default Lens")
         
         realm.beginWrite()
         let defaultLens = Lens()
@@ -50,11 +49,11 @@ func checkAndCreateDefaultLens()
         do
         {
             try realm.commitWrite()
-            DDLogDebug("Added Default Lens")
+            log.debug("Added Default Lens")
         }
         catch
         {
-            DDLogError("Failed to add Default lens")
+            log.error("Failed to add Default lens")
         }
     }
 }

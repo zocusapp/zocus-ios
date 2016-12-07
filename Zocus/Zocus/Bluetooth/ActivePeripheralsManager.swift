@@ -48,7 +48,7 @@ class ActivePeripheralsManager: NSObject
     
     func removeUnscannedPeripherals()
     {
-        self.selectedPeripherals.intersectInPlace(self.scannedPeripherals)
+        self.selectedPeripherals.formIntersection(self.scannedPeripherals)
     }
 
 }

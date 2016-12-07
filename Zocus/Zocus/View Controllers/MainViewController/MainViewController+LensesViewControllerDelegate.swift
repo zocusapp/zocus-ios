@@ -8,27 +8,26 @@
 
 import Foundation
 import UIKit
-import CocoaLumberjack
 
 // MARK: - LensesViewControllerDelegate
 extension MainViewController : LensesViewControllerDelegate
 {
-    func addLensButtonPressed(viewController: LensesViewController)
+    func addLensButtonPressed(_ viewController: LensesViewController)
     {
-        self.presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
         
         let message = "AddLens.Message".localized
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
         // Name TextField
-        alertController.addTextFieldWithConfigurationHandler { (textField) in
+        alertController.addTextField { (textField) in
             textField.placeholder = "AddLens.NewLensNamePlaceholder".localized
-            textField.autocapitalizationType = .Words
-            textField.addTarget(self, action: #selector(MainViewController.textChanged(_:)), forControlEvents: .EditingChanged)
+            textField.autocapitalizationType = .words
+            textField.addTarget(self, action: #selector(MainViewController.textChanged(_:)), for: .editingChanged)
         }
         
         // Buttons
-        let save = UIAlertAction(title: "AddLens.Save".localized, style: .Default) { (alert) in
+        let save = UIAlertAction(title: "AddLens.Save".localized, style: .default) { (alert) in
             
             if let textfield = alertController.textFields?[0],
                 let text = textfield.text
@@ -51,48 +50,48 @@ extension MainViewController : LensesViewControllerDelegate
                     {
                         try self.realm.commitWrite()
                         self.realm.refresh()
-                        DDLogDebug("Added lens '\(lens.name)'")
+                        log.debug("Added lens '\(lens.name)'")
                         
                         self.currentLensLabel.text = "\(self.currentlyUsedLens.name) Lens"
                     }
                     catch
                     {
-                        DDLogError("Failed to add lens '\(lens.name)'")
+                        log.error("Failed to add lens '\(lens.name)'")
                         
                         self.showAlert("AddLens.SaveError".localized)
                     }
                 }
             }
         }
-        save.enabled = false // start disabled until a name is given
+        save.isEnabled = false // start disabled until a name is given
         
-        let cancel = UIAlertAction(title: "AddLens.Cancel".localized, style: .Default, handler: nil)
+        let cancel = UIAlertAction(title: "AddLens.Cancel".localized, style: .default, handler: nil)
         
         alertController.addAction(save)
         alertController.addAction(cancel)
         
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.presentViewController(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.present(alertController, animated: true, completion: nil)
         })
     }
     
     // Observer changes on the text field, to disable/enable save button
-    func textChanged(sender: UITextField)
+    func textChanged(_ sender: UITextField)
     {
         var responder : UIResponder = sender
         while !(responder is UIAlertController)
         {
-            responder = responder.nextResponder()!
+            responder = responder.next!
         }
         if let alert = responder as? UIAlertController
         {
-            (alert.actions[0] as UIAlertAction).enabled = (sender.text != "")
+            (alert.actions[0] as UIAlertAction).isEnabled = (sender.text != "")
         }
     }
     
-    func lensSelected(viewController: LensesViewController, lens: Lens)
+    func lensSelected(_ viewController: LensesViewController, lens: Lens)
     {
-        self.presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
         
         do
         {
@@ -109,22 +108,22 @@ extension MainViewController : LensesViewControllerDelegate
         }
         catch
         {
-            DDLogError("Failed to add lens '\(lens.name)'")
+            log.error("Failed to add lens '\(lens.name)'")
             
             self.showAlert("AddLens.SaveError".localized)
         }
     }
     
-    func lensDeleted(viewController: LensesViewController, lens: Lens)
+    func lensDeleted(_ viewController: LensesViewController, lens: Lens)
     {
-        self.presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
         
         let message = "DeleteLens.Message".localized
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
-        let delete = UIAlertAction(title: "DeleteLens.Delete".localized, style: .Destructive) { (alert) in
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        let delete = UIAlertAction(title: "DeleteLens.Delete".localized, style: .destructive) { (alert) in
             do
             {
-                DDLogInfo("Deleting lens '\(lens.name)'")
+                log.info("Deleting lens '\(lens.name)'")
                 try self.realm.write {
                     // Check if deleted lens is currently in use
                     if (lens.currently_used)
@@ -132,9 +131,9 @@ extension MainViewController : LensesViewControllerDelegate
                         // Find next in list and assign current, unless there are no more left
                         // In case of 0, a default will be created and set
                         var allLenses = Array(self.lenses)
-                        if let found = allLenses.indexOf({ $0.name == lens.name })
+                        if let found = allLenses.index(where: { $0.name == lens.name })
                         {
-                            allLenses.removeAtIndex(found)
+                            allLenses.remove(at: found)
                         }
                         
                         if (allLenses.count > 0)
@@ -151,7 +150,7 @@ extension MainViewController : LensesViewControllerDelegate
             }
             catch
             {
-                DDLogError("Failed to delete lens '\(lens.name)'")
+                log.error("Failed to delete lens '\(lens.name)'")
             }
             
             // Create default realm if necessary
@@ -159,33 +158,33 @@ extension MainViewController : LensesViewControllerDelegate
             self.currentLensLabel.text = "\(self.currentlyUsedLens.name) Lens"
             self.updateActiveSliders()
         }
-        let cancel = UIAlertAction(title: "DeleteLens.Cancel".localized, style: .Default, handler: nil)
+        let cancel = UIAlertAction(title: "DeleteLens.Cancel".localized, style: .default, handler: nil)
         
         alertController.addAction(delete)
         alertController.addAction(cancel)
         
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.presentViewController(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.present(alertController, animated: true, completion: nil)
         })
     }
     
-    func lensEdited(viewController: LensesViewController, lens: Lens)
+    func lensEdited(_ viewController: LensesViewController, lens: Lens)
     {
-        self.presentedViewController?.dismissViewControllerAnimated(true, completion: nil)
+        self.presentedViewController?.dismiss(animated: true, completion: nil)
         
         let message = "EditLens.Message".localized
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .Alert)
+        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
         
         // Name TextField
-        alertController.addTextFieldWithConfigurationHandler { (textField) in
+        alertController.addTextField { (textField) in
             textField.placeholder = "AddLens.NewLensNamePlaceholder".localized
             textField.text = lens.name
-            textField.autocapitalizationType = .Words
-            textField.addTarget(self, action: #selector(MainViewController.textChanged(_:)), forControlEvents: .EditingChanged)
+            textField.autocapitalizationType = .words
+            textField.addTarget(self, action: #selector(MainViewController.textChanged(_:)), for: .editingChanged)
         }
         
         // Buttons
-        let save = UIAlertAction(title: "AddLens.Save".localized, style: .Default) { (alert) in
+        let save = UIAlertAction(title: "AddLens.Save".localized, style: .default) { (alert) in
             
             if let textfield = alertController.textFields?[0],
                 let text = textfield.text
@@ -199,25 +198,25 @@ extension MainViewController : LensesViewControllerDelegate
                     {
                         try self.realm.commitWrite()
                         self.realm.refresh()
-                        DDLogDebug("Edited lens name to '\(lens.name)'")
+                        log.debug("Edited lens name to '\(lens.name)'")
                         self.currentLensLabel.text = "\(self.currentlyUsedLens.name) Lens"
                     }
                     catch
                     {
-                        DDLogError("Failed to edit lens name to '\(text)'")
+                        log.error("Failed to edit lens name to '\(text)'")
                         
                         self.showAlert("AddLens.SaveError".localized)
                     }
                 }
             }
         }
-        let cancel = UIAlertAction(title: "AddLens.Cancel".localized, style: .Default, handler: nil)
+        let cancel = UIAlertAction(title: "AddLens.Cancel".localized, style: .default, handler: nil)
         
         alertController.addAction(save)
         alertController.addAction(cancel)
         
-        dispatch_async(dispatch_get_main_queue(), { () -> Void in
-            self.presentViewController(alertController, animated: true, completion: nil)
+        DispatchQueue.main.async(execute: { () -> Void in
+            self.present(alertController, animated: true, completion: nil)
         })
     }
 }

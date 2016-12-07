@@ -7,9 +7,6 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
-import CocoaLumberjack
 import RealmSwift
 
 @UIApplicationMain
@@ -17,12 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate
 {
     var window: UIWindow?
 
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
-        self.setupLogging()
-        
         // Always show statusbar
-        UIApplication.sharedApplication().setStatusBarHidden(false, withAnimation: .None)
+        UIApplication.shared.setStatusBarHidden(false, with: .none)
         
         // Setup Data Model - Realm
         let realm = try! Realm()
@@ -35,33 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate
         {
             rootVC.realm = realm
         }
-        
-        Fabric.with([Crashlytics.self])
         return true
-    }
-    
-    // MARK: Helpers
-    
-    private func setupLogging()
-    {
-        // Logging
-        #if RELEASE
-            defaultDebugLevel = DDLogLevel.Verbose
-        #else
-            defaultDebugLevel = DDLogLevel.Verbose
-        #endif
-        
-        // TTY Logging
-        setenv("XcodeColors", "YES", 0)
-        let logger = DDTTYLogger.sharedInstance()
-        logger.setXcodeColors()
-        logger.logFormatter = CustomLogFormatter()
-        DDLog.addLogger(logger)
-        
-        // Add Crashlytics remote logging
-        let crashlyticsLogger = CrashlyticsLogger.sharedInstance
-        crashlyticsLogger.logFormatter = CustomLogFormatter()
-        DDLog.addLogger(crashlyticsLogger)
     }
 }
 

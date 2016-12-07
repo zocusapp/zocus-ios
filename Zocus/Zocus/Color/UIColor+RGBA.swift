@@ -8,7 +8,6 @@
 
 import UIKit
 import Foundation
-import CocoaLumberjack
 
 extension UIColor
 {
@@ -21,11 +20,11 @@ extension UIColor
         
         if rgba.hasPrefix("#")
         {
-            let index = rgba.startIndex.advancedBy(1)
-            let hex = rgba.substringFromIndex(index)
-            let scanner = NSScanner(string: hex)
+            let index = rgba.characters.index(rgba.startIndex, offsetBy: 1)
+            let hex = rgba.substring(from: index)
+            let scanner = Scanner(string: hex)
             var hexValue: CUnsignedLongLong = 0
-            if scanner.scanHexLongLong(&hexValue)
+            if scanner.scanHexInt64(&hexValue)
             {
                 if (hex.characters.count == 6)
                 {
@@ -42,13 +41,13 @@ extension UIColor
                 }
                 else
                 {
-                    DDLogError("Invalid rgb string, length should be 7 or 9")
+                    print("Invalid rgb string, length should be 7 or 9")
                 }
             }
         }
         else
         {
-            DDLogError("Invalid rgb string, missing '#' as prefix")
+            print("Invalid rgb string, missing '#' as prefix")
         }
         self.init(red:red, green:green, blue:blue, alpha:alpha)
     }
